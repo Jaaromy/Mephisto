@@ -9,6 +9,7 @@
     "angular-ui-router": "~0.2"
   },
   "dependencies": {
+    "bower-angular-placeholders": "~0.0.2",
     "phaser": "~2.3.0"
   },
   "homepage": "https://github.com/Jaaromy/Mephisto",
