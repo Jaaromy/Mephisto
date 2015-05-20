@@ -18,7 +18,7 @@ module.exports = function ( karma ) {
       'src/assets/**/*.js'
     ],
     frameworks: [ 'jasmine' ],
-    plugins: [ 'karma-jasmine', 'karma-firefox-launcher', 'karma-coffee-preprocessor' ],
+    plugins: [ 'karma-jasmine', 'karma-chrome-launcher', 'karma-coffee-preprocessor' ],
     preprocessors: {
       '**/*.coffee': 'coffee',
     },
@@ -39,7 +39,7 @@ module.exports = function ( karma ) {
     /** 
      * Disable file watching by default.
      */
-    autoWatch: false,
+    autoWatch: true,
 
     /**
      * The list of browsers to launch to test on. This includes only "Firefox" by
@@ -55,7 +55,7 @@ module.exports = function ( karma ) {
      * the aesthetic advantage of not launching a browser every time you save.
      */
     browsers: [
-      'Firefox'
+      'Chrome'
     ]
   });
 };
