@@ -1,4 +1,5 @@
 /// <reference path="../../typings/angularjs/angular.d.ts"/>
+
 angular.module( 'ngBoilerplate', [
   'templates-app',
   'templates-common',
