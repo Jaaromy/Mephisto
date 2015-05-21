@@ -49,36 +49,57 @@ angular.module( 'ngBoilerplate.home', [
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
-    game.load.image('arrow', 'assets/sprites/arrow.png');
+    game.load.image('circle', 'assets/circle.png');
+    game.time.advancedTiming = true;
 }
 
 var sprite;
+var emitter;
 
 function create() {
+    game.stage.backgroundColor = '#1F1F1F';
+    
+    emitter = game.add.emitter(game.world.centerX, game.world.centerY, 250);
+    emitter.makeParticles('circle', 0, 2000, true, true);
 
-    game.physics.startSystem(Phaser.Physics.ARCADE);
+    emitter.minParticleScale = 0.01;
+    emitter.maxParticleScale = 0.02;
+    emitter.minParticleSpeed.setTo(-200, -300);
+    emitter.maxParticleSpeed.setTo(200, -400);
+    emitter.gravity = 500;
+    emitter.bounce.setTo(0.5, 0.5);
+    emitter.angularDrag = 30;
 
-    game.stage.backgroundColor = '#0072bc';
+    emitter.start(false, 15000, 0);
+    
+    updateGravity();
+ 
+    game.time.events.loop(Phaser.Timer.SECOND * 10, updateGravity, this);
 
-    sprite = game.add.sprite(400, 300, 'arrow');
-    sprite.anchor.setTo(0.5, 0.5);
+}
+var gravity;
+var frequency;
 
-    //  Enable Arcade Physics for the sprite
-    game.physics.enable(sprite, Phaser.Physics.ARCADE);
+function updateGravity() {
+  gravity = game.rnd.pick([0, 50, 100, 200, 500, 1000]);
+  frequency = game.rnd.pick([0, 10]);
 
-    //  Tell it we don't want physics to manage the rotation
-    sprite.body.allowRotation = false;
-
+  emitter.gravity = gravity; 
+  emitter.frequency = frequency;
 }
 
 function update() {
-
-    sprite.rotation = game.physics.arcade.moveToPointer(sprite, 60, game.input.activePointer, 500);
+     
+     game.physics.arcade.collide(emitter);
 
 }
 
 function render() {
-
-    game.debug.spriteInfo(sprite, 32, 32);
+  game.debug.text("FPS: " + game.time.fps || '--', 2, 10, "#00ff00");
+  game.debug.text("Gravity: " + gravity, 2, 25, "#00ff00");
+  game.debug.text("Frequency: " + frequency, 2, 40, "#00ff00");
+  game.debug.text("Time: " + game.time.events.duration.toFixed(0), 2, 55, "#00ff00");
+  game.debug.text("Living: " + emitter.total, 2, 70, "#00ff00");
+    //game.debug.spriteInfo(sprite, 32, 32);
 
 }
