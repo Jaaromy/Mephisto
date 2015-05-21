@@ -81,7 +81,7 @@ var gravity;
 var frequency;
 
 function updateGravity() {
-  gravity = game.rnd.pick([0, 50, 100, 200, 500, 1000]);
+  gravity = game.rnd.pick([0, 50, 100, 200, 1000]);
   frequency = game.rnd.pick([0, 10]);
 
   emitter.gravity = gravity; 
