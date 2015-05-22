@@ -8,7 +8,7 @@
   <% }); %>
 <% }); %> <% } %>
 
-<% if (_(changelog.feat).size() > 0) { %> ## Style
+<% if (_(changelog.style).size() > 0) { %> ## Style
 <% _(changelog.style).forEach(function(changes, scope) { %>
 - **<%= scope%>:**
   <% changes.forEach(function(change) { %> - <%= change.msg%> (<%= helpers.commitLink(change.sha1) %>)
