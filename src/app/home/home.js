@@ -63,7 +63,7 @@ function create() {
     emitter.makeParticles('circle', 0, 2000, true, true);
 
     emitter.minParticleScale = 0.01;
-    emitter.maxParticleScale = 0.03;
+    emitter.maxParticleScale = 0.04;
     emitter.minParticleSpeed.setTo(-200, -300);
     emitter.maxParticleSpeed.setTo(200, -400);
     emitter.gravity = 500;
